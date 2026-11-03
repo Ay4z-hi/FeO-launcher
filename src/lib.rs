@@ -16,14 +16,14 @@ enum AppState {
     ActiveGameLoop,
 }
 
-pub struct FeO LauncherApp {
+pub struct FeOLauncherApp {
     state: AppState,
     overlay_engine: TouchOverlayEngine,
     hud: DownloadHud,
     is_loading: bool,
 }
 
-impl FeO LauncherApp {
+impl FeOLauncherApp {
     pub fn new() -> Self {
         let layout = PojavControlLayout::default_feo_layout();
         Self {
@@ -35,7 +35,7 @@ impl FeO LauncherApp {
     }
 }
 
-impl eframe::App for FeO LauncherApp {
+impl eframe::App for FeOLauncherApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
             DotMatrixStyle::draw_background_grid(ui);
@@ -78,7 +78,7 @@ impl eframe::App for FeO LauncherApp {
     }
 }
 
-fn egio_top_left_exit(ui: &mut egui::Ui, app: &mut FeO LauncherApp) {
+fn egio_top_left_exit(ui: &mut egui::Ui, app: &mut FeOLauncherApp) {
     let rect = Rect::from_min_size(Pos2::new(20.0, 20.0), Vec2::new(80.0, 35.0));
     if ui.allocate_rect(rect, Sense::click()).clicked() {
         app.state = AppState::Menu;
@@ -100,6 +100,6 @@ fn android_main(app: AndroidApp) {
     eframe::run_native(
         "FeO Launcher",
         options,
-        Box::new(|_cc| Box::new(FeO LauncherApp::new())),
+        Box::new(|_cc| Box::new(FeOLauncherApp::new())),
     ).unwrap();
-                              }
+}
