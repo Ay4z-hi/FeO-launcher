@@ -1,0 +1,41 @@
+name: Build Playable FeO Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-android-engine:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Rust Toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-linux-android
+
+      - name: Install cargo-apk
+        run: cargo install cargo-apk
+
+      - name: Set up Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up Android NDK
+        uses: nsetup/action-setup-ndk@v2
+        with:
+          ndk-version: r25c
+
+      - name: Build Release APK (aarch64 Vulkan Target)
+        run: cargo apk build --release --target aarch64-linux-android
+
+      - name: Upload Playable APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: FeO-Engine-Android-Release
+          path: target/release/apk/*.apk
