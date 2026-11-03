@@ -25,4 +25,4 @@ android-activity = { version = "0.5", features = ["native-activity"] }
 ndk = "0.8"
 ndk-sys = "0.5"
 jni = "0.21"
-wgpu = { version = "0.19.1", features = ["vulkan", "gles"] }
+wgpu = { version = "0.19.1", features = ["vulkan"] }
