@@ -7,13 +7,13 @@ edition = "2021"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-# Pull in the exact package name "horizon" from the official repo
-horizon = { git = "https://github.com/horizon-rust/horizon.git" }
+# Explicitly target the workspace member package inside the git repository
+horizon-core = { git = "https://github.com/horizon-rust/horizon.git", package = "horizon-core" }
 
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 tokio = { version = "1.0", features = ["full"] }
-reqwest = { version = "0.11", features = ["json", "stream"] }
+reqwest = { version = "0.11", features = ["json", "stream"] ]
 egui = "0.26"
 eframe = { version = "0.26", default-features = false, features = ["wgpu"] }
 glam = "0.24"
