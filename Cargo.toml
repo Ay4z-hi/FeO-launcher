@@ -7,7 +7,8 @@ edition = "2021"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-horizon-core = { git = "https://github.com/horizon-rust/horizon.git", package = "horizon" }
+# Fixed git dependency reference for the Horizon engine repository
+horizon-core = { git = "https://github.com/horizon-rust/horizon.git" }
 
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
